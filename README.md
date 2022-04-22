@@ -10,7 +10,7 @@
 
 ## Data Preparation
 
-We start by reading `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+* We start by reading `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
 
 ```python
 #Read crypto_data.csv into pandas
@@ -19,7 +19,7 @@ crypto_df = pd.read_csv(crypto_data)
 crypto_df.head(10)
 ```
 
-Discard all cryptocurrencies that are not being traded. In others words, filter all currencies that are currently being traded. 
+* Discard all cryptocurrencies that are not being traded. In others words, filter all currencies that are currently being traded. 
 Once this is done, we drop the `IsTrading` column from the dataframe.
 
 ```python
@@ -34,12 +34,36 @@ crypto_df.drop(columns=['IsTrading'], inplace=True)
 crypto_df
 ```
 
+* Remove all rows that have at least one null vlaue.
+
+```python
+#Remove all rows that have at least one null value
+crypto_df.dropna(inplace=True)
+crypto_df.head(10)
+```
+
+Filter all cryptocurrencies that have been mined, that are greater than zero.
+
+```python
+#Filter cryptocurrencies that have been mined
+crypto_df = crypto_df[crypto_df['TotalCoinsMined'] > 0]
+crypto_df
+```
+
+*In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, I will delete the `CoinName` from the original dataframe.
+
+```python
+#Drop'CoinName' from the orginal dataframe since it cannot be used by the clustering Algorithm
+crypto_df = crypto_df.drop(columns=["CoinName", "Unnamed: 0"])
+crypto_df
+```
+
 ```python
 ```
 
 ```python
-
 ```
+
 ```python
 ```
 
