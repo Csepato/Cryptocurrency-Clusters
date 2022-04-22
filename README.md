@@ -1,5 +1,7 @@
 # Cryptocurrency Clusters
 
+![Hero-image](resources/images/Cryptocurrencies.jpeg)
+
 ## Background
 
 * You are on the Advisory Services Team of a financial consultancy. One of your clients, a prominent investment bank, is interested in offering a new cryptocurrency investment portfolio for its customers. The company, however, is lost in the vast universe of cryptocurrencies. They’ve asked you to create a report that includes what cryptocurrencies are on the trading market and determine whether they can be grouped to create a classification system for this new investment.
@@ -9,6 +11,9 @@
 ## DataSource
 
 The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+
+## Recomendations
+Based on my findings, there is not enough features in the dataset to extact a meaningful grouping. Our elbow chart trends downwards with no elbow point,  there is not enough of an 'elbow' in our K-Means plot to signify a meaningful cluster in this dataset. This clustering did not provide much insight into the cryptocurrency trends. More features should be added.
 
 ## References
 
