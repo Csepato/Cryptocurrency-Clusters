@@ -12,6 +12,34 @@
 
 The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
 
+## Data Cleaning
+
+Firstly we start by discarding all cryptocurrencies that are not being traded. In others words, filter all currencies that are currently being traded. 
+Once this done, we drop the IsTrading column from the dataframe.
+
+```python
+#Discard all cryptocurrencies that are not being traded
+crypto_df = crypto_df[crypto_df['IsTrading'] == True]
+crypto_df.head(10)
+```
+
+```python
+#Drop IsTrading column from the dataframe
+crypto_df.drop(columns=['IsTrading'], inplace=True)
+crypto_df
+```
+
+```python
+```
+
+```python
+
+```
+```python
+```
+
+```python
+```
 ## Recomendations
 Based on my findings, there is not enough features in the dataset to extact a meaningful grouping. Our elbow chart trends downwards with no elbow point,  there is not enough of an 'elbow' in our K-Means plot to signify a meaningful cluster in this dataset. This clustering did not provide much insight into the cryptocurrency trends. More features should be added.
 
