@@ -8,14 +8,19 @@
 
 * You have been handed raw data, so you will first need to process it to fit the machine learning models. Since there is no known classification system, you will need to use unsupervised learning. You will use several clustering algorithms to explore whether the cryptocurrencies can be grouped together with other similar cryptocurrencies. You will use data visualization to share your findings with the investment bank.
 
-## DataSource
+## Data Preparation
 
-The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+Firstly we start by reading `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
 
-## Data Cleaning
+```python
+#Read crypto_data.csv into pandas
+crypto_data = "resources/data/crypto_data.csv"
+crypto_df = pd.read_csv(crypto_data)
+crypto_df.head(10)
+```
 
-Firstly we start by discarding all cryptocurrencies that are not being traded. In others words, filter all currencies that are currently being traded. 
-Once this done, we drop the IsTrading column from the dataframe.
+Discard all cryptocurrencies that are not being traded. In others words, filter all currencies that are currently being traded. 
+Once this is done, we drop the `IsTrading` column from the dataframe.
 
 ```python
 #Discard all cryptocurrencies that are not being traded
