@@ -10,7 +10,7 @@
 
 ## Data Preparation
 
-* We start by reading `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
+* Read `crypto_data.csv` into Pandas. The dataset was obtained from [CryptoCompare](https://min-api.cryptocompare.com/data/all/coinlist).
 
 ```python
 #Read crypto_data.csv into pandas
@@ -50,7 +50,7 @@ crypto_df = crypto_df[crypto_df['TotalCoinsMined'] > 0]
 crypto_df
 ```
 
-*In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, I will delete the `CoinName` from the original dataframe.
+* In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, I will delete the `CoinName` from the original dataframe.
 
 ```python
 #Drop'CoinName' from the orginal dataframe since it cannot be used by the clustering Algorithm
@@ -58,6 +58,52 @@ crypto_df = crypto_df.drop(columns=["CoinName", "Unnamed: 0"])
 crypto_df
 ```
 
+* Converting remaining features with text values, Algorithm and ProofType, into numerical data,using Pandas to create dummy variables.
+
+```python
+#Convert text features to numeric data
+X = pd.get_dummies(crypto_df, columns=['Algorithm', 'ProofType'])
+X.head(10)
+```
+
+* Standardize your dataset so that columns that contain larger values do not unduly influence the outcome.
+
+```python
+#Standardize the dataset using sklearn StandardScaler
+X_scaled = StandardScaler().fit_transform(X)
+X_scaled
+```
+
+## Dimensionality Reduction
+
+* Using PCA(n_components=0.90) creates a model that will preserve approximately 90% of the explained variance in dimensionality reduction.
+
+```python
+# Reduce dimension with PCA 
+pca = PCA(n_components=.90)
+principal_compnenets = pca.fit_transform(X_scaled)
+principal_compnenets.shape
+```
+output: (532, 74)
+
+```python
+# Variance levels display of the princiapl_components line above
+print(pca.explained_variance_.sum())
+```
+output: 88.47283457566152
+
+* Further reduce the dataset dimensions with t-SNE and visually inspect the results by running t-SNE on the principal components: the output of the PCA transformation.
+
+```python
+# Reduce dimensions with t-SNE
+tsne = TSNE(perplexity=50)
+tsne_feature = tsne.fit_transform(principal_compnenets)
+tsne_feature.shape
+```
+output: (532, 2)
+
+* Create a scatter plot of the t-SNE output. Observe whether there are distinct clusters or not.
+* 
 ```python
 ```
 
