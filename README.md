@@ -118,14 +118,32 @@ plt.show()
 ```
 ![T-SNE-Clusters](resources/images/T-SNE-Feature-Clusters.png)
 
-```python
-```
+* Use a for-loop to determine the inertia for each k between 1 through 10.
 
 ```python
+# Identify cluster with k-means
+inertia = []
+k = list(range(1,11))
+
+for i in k:
+    kmeans = KMeans(n_clusters=i, random_state=0)
+    kmeans.fit(principal_compnenets)
+    inertia.append(kmeans.inertia_)
 ```
 
+* Create an elbow plot to identify the best number of clusters.
+
 ```python
+# Create the elbow curve
+elbow_df = pd.DataFrame({"k": k, "inertia": inertia})
+elbow_df.plot.line(x="k", y="inertia")
+plt.xlabel("K Means")
+plt.ylabel("Inertia")
+plt.title("Elbow Plot")
+plt.show()
 ```
+![elbow-curve](resources/images/elbow-curve.png)
+
 ## Recomendations
 Based on my findings, there is not enough features in the dataset to extact a meaningful grouping. Our elbow chart trends downwards with no elbow point,  there is not enough of an 'elbow' in our K-Means plot to signify a meaningful cluster in this dataset. This clustering did not provide much insight into the cryptocurrency trends. More features should be added.
 
