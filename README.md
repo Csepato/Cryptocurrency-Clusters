@@ -50,7 +50,7 @@ crypto_df = crypto_df[crypto_df['TotalCoinsMined'] > 0]
 crypto_df
 ```
 
-* In order for your dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, I will delete the `CoinName` from the original dataframe.
+* In order for the dataset to be comprehensible to a machine learning algorithm, its data should be numeric. Since the coin names do not contribute to the analysis of the data, I will delete the `CoinName` from the original dataframe.
 
 ```python
 #Drop'CoinName' from the orginal dataframe since it cannot be used by the clustering Algorithm
@@ -66,7 +66,7 @@ X = pd.get_dummies(crypto_df, columns=['Algorithm', 'ProofType'])
 X.head(10)
 ```
 
-* Standardize your dataset so that columns that contain larger values do not unduly influence the outcome.
+* Standardize the dataset so that columns that contain larger values do not unduly influence the outcome.
 
 ```python
 #Standardize the dataset using sklearn StandardScaler
