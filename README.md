@@ -87,7 +87,7 @@ principal_compnenets.shape
 output: (532, 74)
 
 ```python
-# Variance levels display of the princiapl_components line above
+# Variance levels display of the principal_components line above
 print(pca.explained_variance_.sum())
 ```
 output: 88.47283457566152
