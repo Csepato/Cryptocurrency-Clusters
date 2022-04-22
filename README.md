@@ -42,7 +42,7 @@ crypto_df.dropna(inplace=True)
 crypto_df.head(10)
 ```
 
-Filter all cryptocurrencies that have been mined, that are greater than zero.
+* Filter all cryptocurrencies that have been mined, that are greater than zero.
 
 ```python
 #Filter cryptocurrencies that have been mined
@@ -58,7 +58,7 @@ crypto_df = crypto_df.drop(columns=["CoinName", "Unnamed: 0"])
 crypto_df
 ```
 
-* Converting remaining features with text values, Algorithm and ProofType, into numerical data,using Pandas to create dummy variables.
+* Converting remaining features with text values, `Algorithm` and `ProofType`, into numerical data,using Pandas to create dummy variables.
 
 ```python
 #Convert text features to numeric data
@@ -102,10 +102,21 @@ tsne_feature.shape
 ```
 output: (532, 2)
 
-* Create a scatter plot of the t-SNE output. Observe whether there are distinct clusters or not.
-* 
+## Clustering with K-Means
+
+* Create a scatter plot of the t-SNE output to observe whether there are distinct clusters or not.
+
 ```python
+# Plot T-SNE features
+X = tsne_feature[:,0]
+y = tsne_feature[:,1]
+
+# Display plt
+plt.scatter(X,y)
+plt.title("T-SNE Feature Clusters")
+plt.show()
 ```
+![T-SNE-Clusters](resources/images/T-SNE-Feature-Clusters.png)
 
 ```python
 ```
